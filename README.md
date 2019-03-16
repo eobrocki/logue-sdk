@@ -2,6 +2,22 @@
 
 This repository contains all the files and tools needed to build custom oscillators and effects for the [prologue](https://www.korg.com/products/synthesizers/prologue) and [minilogue xd](https://www.korg.com/products/synthesizers/minilogue_xd) synthesizers.
 
+## Quick Start
+### Clone repository
+$ git clone https://github.com/korginc/logue-sdk.git
+cd logue-sdk
+### Check out submodules
+git submodule update --init --recursive
+### Build tool dependencies
+cd tools/logue-cli
+make
+cd ../gcc
+make
+### Build sample oscillator
+cd ../../prologue/demos/waves/
+make
+
+
 #### Overall Structure:
 * [platform/prologue/](platform/prologue/) : prologue specific files, templates and demo projects.
 * [platform/minilogue-xd/](platform/minilogue-xd/) : minilogue xd specific files, templates and demo projects.
