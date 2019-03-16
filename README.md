@@ -6,7 +6,7 @@ This repository contains all the files and tools needed to build custom oscillat
 ### Clone repository
 $ git clone https://github.com/korginc/logue-sdk.git
 cd logue-sdk
-### Check out submodules
+### Check out submodules (CMSIS)
 git submodule update --init --recursive
 ### Build tool dependencies
 cd tools/logue-cli
