@@ -12,7 +12,7 @@ else
     detected_OS := $(shell uname -s)
 endif
 
-PLATFORMDIR = ..
+PLATFORMDIR = ../..
 PROJECTDIR = .
 TOOLSDIR = $(PLATFORMDIR)/../../tools
 EXTDIR = $(PLATFORMDIR)/../ext
@@ -232,3 +232,9 @@ package:
 	@mv $(PROJECT).zip $(PKGARCH)
 	@echo
 	@echo Done
+
+install:
+	@echo Loading onto Prologue
+	$(TOOLSDIR)/logue-cli/logue-cli probe
+	$(TOOLSDIR)/logue-cli/logue-cli load -u $(PROJECT).prlgunit
+
