@@ -71,8 +71,9 @@ struct Square {
 	float sig(uint8_t note, uint8_t mod) {
 		float ret = -1.0f;
 
-		//const float w0 = osc_w0f_for_note((params->pitch) >> 8, params->pitch & 0xFF);
-		float hz = osc_notehzf(note);
+		const float f0 = osc_notehzf(note);
+		const float f1 = osc_notehzf(note + 1);
+		float hz = clipmaxf(linintf(mod * k_note_mod_fscale, f0, f1), k_note_max_hz);
 		if (hz < 1)
 			hz = 1.0f;
 		float frames_per_cycle = k_samplerate / hz;
