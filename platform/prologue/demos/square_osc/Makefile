@@ -233,8 +233,21 @@ package:
 	@echo
 	@echo Done
 
-install:
-	@echo Loading onto Prologue
-	$(TOOLSDIR)/logue-cli/logue-cli probe
+probe:
+	@echo Probe oscillators from Prologue
+	$(TOOLSDIR)/logue-cli/logue-cli probe -m osc
+
+clear:
+	@echo Clear oscillator from Prologue
+	-$(TOOLSDIR)/logue-cli/logue-cli probe -m osc | grep -e "[0-9]]: \"square\"" | cut -d ] -f 1 | cut -d [ -f 2 | xargs -t -I % $(TOOLSDIR)/logue-cli/logue-cli clear -m osc -s %
+	# Sometimes clearing a slot fails with "Error: Clear command timed out." for no good reason... but it works!
+	@echo Cleared old versions of $(PROJECT) 
+
+load:
+	@echo Load oscillator onto Prologue	
 	$(TOOLSDIR)/logue-cli/logue-cli load -u $(PROJECT).prlgunit
+
+install: clear load probe
+	@echo Finished installing updated oscillator onto Prologue.
+	@echo Go forth and synthesize!
 
