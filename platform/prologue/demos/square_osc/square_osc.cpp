@@ -72,11 +72,12 @@ struct Square {
 		float ret = -1.0f;
 
 		//const float w0 = osc_w0f_for_note((params->pitch) >> 8, params->pitch & 0xFF);
-		const float hz = osc_notehzf(note);
+		float hz = osc_notehzf(note);
+		if (hz < 1)
+			hz = 1.0f;
 		float frames_per_cycle = k_samplerate / hz;
 
-		if (frames_per_cycle < 100)
-			frames_per_cycle = 100;
+		// Now we know when to reset the waveform
 		if (frames >= frames_per_cycle)
 			frames = 0;
 
