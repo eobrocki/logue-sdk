@@ -62,11 +62,6 @@ struct Square {
 		frames = 0;
 	}
 
-	void set_pulsewidth(uint16_t value) {
-		float valf = param_val_to_f32(value);
-		set_pulsewidth(valf);
-	}
-
 	void set_pulsewidth(float value) {
 		pulsewidth = clipminmaxf(PWM_MIN, value, PWM_MAX);
 	}
@@ -91,7 +86,8 @@ struct Square {
 		if (frames >= frames_per_cycle)
 			frames = 0;
 
-		float pwm = pulsewidth + lfo;
+		const float lfo_knob_scale = 0.5;
+		float pwm = pulsewidth + lfo_knob_scale * lfo;
 		pwm = clipminmaxf(PWM_MIN, pwm, PWM_MAX);
 		const float frames_on = frames_per_cycle * pwm;
 		if (frames < frames_on)
@@ -118,6 +114,8 @@ void OSC_CYCLE(const user_osc_param_t * const params,
 	uint8_t note = (params->pitch) >> 8;
 	uint8_t mod = params->pitch & 0xFF;
 	const float lfo = q31_to_f32(params->shape_lfo);
+	const float cutoff = param_val_to_f32(params->cutoff);
+	const float resonance = param_val_to_f32(params->resonance);
 
 	for (; y != y_e; y++) {
 		s_square.increment_frame();
@@ -140,9 +138,12 @@ void OSC_PARAM(uint16_t index, uint16_t value)
 	
   switch (index) {
   case k_osc_param_shape:
+  {
 	  // pulsewidth
-	  s_square.set_pulsewidth(value);
-		break;           
+	  float valf = param_val_to_f32(value);
+	  s_square.set_pulsewidth(valf);
+	  break;
+  }
   case k_osc_param_id1:
   case k_osc_param_id2:
   case k_osc_param_id3:
