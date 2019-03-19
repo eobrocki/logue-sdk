@@ -40,9 +40,13 @@
 
 #include "userosc.h"
 
+const float PWM_MIN = 0.01;
+const float PWM_MAX = 0.99;
+
 struct Square {
 	float pulsewidth;
 	uint32_t frames;
+	float lfo;
 
 	Square(void) {
 		init();
@@ -50,6 +54,11 @@ struct Square {
 
 	void init(void) {
 		set_pulsewidth(0.5f);
+		frames = 0;
+		lfo = 0;
+	}
+
+	void note_on(void) {
 		frames = 0;
 	}
 
@@ -59,7 +68,7 @@ struct Square {
 	}
 
 	void set_pulsewidth(float value) {
-		pulsewidth = clipminmaxf(0.1f, value, 0.9f);
+		pulsewidth = clipminmaxf(PWM_MIN, value, PWM_MAX);
 	}
 
 	void increment_frame() {
@@ -68,7 +77,7 @@ struct Square {
 			frames = 0;
 	}
 
-	float sig(uint8_t note, uint8_t mod) {
+	float sig(uint8_t note, uint8_t mod, float lfo) {
 		float ret = -1.0f;
 
 		const float f0 = osc_notehzf(note);
@@ -76,13 +85,15 @@ struct Square {
 		float hz = clipmaxf(linintf(mod * k_note_mod_fscale, f0, f1), k_note_max_hz);
 		if (hz < 1)
 			hz = 1.0f;
-		float frames_per_cycle = k_samplerate / hz;
 
+		float frames_per_cycle = k_samplerate / hz;
 		// Now we know when to reset the waveform
 		if (frames >= frames_per_cycle)
 			frames = 0;
 
-		const float frames_on = frames_per_cycle * pulsewidth;
+		float pwm = pulsewidth + lfo;
+		pwm = clipminmaxf(PWM_MIN, pwm, PWM_MAX);
+		const float frames_on = frames_per_cycle * pwm;
 		if (frames < frames_on)
 			ret = 1.0f;
 
@@ -104,17 +115,20 @@ void OSC_CYCLE(const user_osc_param_t * const params,
 
 	q31_t * __restrict y = (q31_t *)yn;
 	const q31_t * y_e = y + frames;
+	uint8_t note = (params->pitch) >> 8;
+	uint8_t mod = params->pitch & 0xFF;
+	const float lfo = q31_to_f32(params->shape_lfo);
 
 	for (; y != y_e; y++) {
 		s_square.increment_frame();
-		float sig = s_square.sig((params->pitch) >> 8, params->pitch & 0xFF);
-
+		float sig = s_square.sig(note, mod, lfo);
 		*y = f32_to_q31(sig);
 	}
 }
 
 void OSC_NOTEON(const user_osc_param_t * const params)
 {
+	s_square.note_on();
 }
 
 void OSC_NOTEOFF(const user_osc_param_t * const params)
@@ -128,7 +142,14 @@ void OSC_PARAM(uint16_t index, uint16_t value)
   case k_osc_param_shape:
 	  // pulsewidth
 	  s_square.set_pulsewidth(value);
-	break;           
+		break;           
+  case k_osc_param_id1:
+  case k_osc_param_id2:
+  case k_osc_param_id3:
+  case k_osc_param_id4:
+  case k_osc_param_id5:
+  case k_osc_param_id6:
+  case k_osc_param_shiftshape:
   default:
     break;
   }
