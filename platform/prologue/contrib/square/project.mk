@@ -6,7 +6,7 @@ PROJECT = square_test
 
 UCSRC = 
 
-UCXXSRC = ../src/square.cpp
+UCXXSRC = square.cpp
 
 UINCDIR =
 

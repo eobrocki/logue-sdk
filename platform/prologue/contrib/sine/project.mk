@@ -6,7 +6,7 @@ PROJECT = sine_test
 
 UCSRC = 
 
-UCXXSRC = ../src/sine.cpp
+UCXXSRC = sine.cpp
 
 UINCDIR =
 
