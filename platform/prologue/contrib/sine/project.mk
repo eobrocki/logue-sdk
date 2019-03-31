@@ -2,7 +2,7 @@
 # Project Customization
 # #############################################################################
 
-PROJECT = sine_test
+PROJECT = sine
 
 UCSRC = 
 

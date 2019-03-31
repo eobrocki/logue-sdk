@@ -2,7 +2,7 @@
 # Project Customization
 # #############################################################################
 
-PROJECT = square_test
+PROJECT = square
 
 UCSRC = 
 
