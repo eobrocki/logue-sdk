@@ -106,9 +106,9 @@ void OSC_CYCLE(const user_osc_param_t * const params,
 	const float resonance = param_val_to_f32(params->resonance);
 
 	for (; y != y_e; y++) {
-		s_sine2.increment_frame();
 		float sig = s_sine2.sig(note, mod, lfo);
 		*y = f32_to_q31(sig);
+		s_sine2.increment_frame();
 	}
 }
 
