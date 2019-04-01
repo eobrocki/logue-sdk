@@ -32,15 +32,22 @@
 //*/
 
 /*
- * File: sine.cpp
- *
- * Naive sine oscillator test
+ * Sine oscillator, allows PWM within one cycle.
  *
  */
 
 #include "userosc.h"
 
+const float PWM_MIN = 0.05f;
+const float PWM_MAX = 0.95f;
+
+const float TROUGH = -1.0f;
+const float PEAK = 1.0f;
+
 struct Sine2 {
+	float pwm;
+
+	// Current frame counter within one oscillator cycle
 	uint32_t frames;
 
 	Sine2(void) {
@@ -48,11 +55,16 @@ struct Sine2 {
 	}
 
 	void init(void) {
+		set_pwm(0.0f);
 		frames = 0;
 	}
 
 	void note_on(void) {
 		frames = 0;
+	}
+
+	void set_pwm(float value) {
+		pwm = clipminmaxf(PWM_MIN, value, PWM_MAX);
 	}
 
 	void increment_frame() {
@@ -62,7 +74,7 @@ struct Sine2 {
 	}
 
 	float sig(uint8_t note, uint8_t mod, float lfo) {
-		float ret = -1.0f;
+		float ret = 0.0f;
 
 		const float f0 = osc_notehzf(note);
 		const float f1 = osc_notehzf(note + 1);
@@ -71,13 +83,27 @@ struct Sine2 {
 			hz = 1.0f;
 
 		float frames_per_cycle = k_samplerate / hz;
+		if (frames_per_cycle < 1)
+			frames_per_cycle = 1;
 		// Now we know when to reset the waveform
 		if (frames >= frames_per_cycle)
 			frames = 0;
 
-		ret = osc_sinf(frames / frames_per_cycle);
+		const float lfo_knob_scale = 1.0f;
+		float tmp_pwm = 0.5 + (pwm / 2.0f) + lfo_knob_scale * lfo;
+		tmp_pwm = clipminmaxf(PWM_MIN, tmp_pwm, PWM_MAX);
 
-
+		float frames_during_first_cycle = tmp_pwm * frames_per_cycle;
+		if (frames_during_first_cycle > 1 && frames < frames_during_first_cycle) {
+			ret = osc_sinf(frames / (2 * frames_during_first_cycle));
+		}
+		else {
+			float frames_during_second_cycle = frames_per_cycle - frames_during_first_cycle;
+			if (frames_during_second_cycle < 1) {
+				frames_during_second_cycle = 1;
+			}
+			ret = -osc_sinf((frames - frames_during_first_cycle) / (2.0 * frames_during_second_cycle));
+		}
 		return ret;
 	}
 };
@@ -114,6 +140,7 @@ void OSC_CYCLE(const user_osc_param_t * const params,
 
 void OSC_NOTEON(const user_osc_param_t * const params)
 {
+//	const float lfo = q31_to_f32(params->shape_lfo);
 	s_sine2.note_on();
 }
 
@@ -133,6 +160,10 @@ void OSC_PARAM(uint16_t index, uint16_t value)
   case k_osc_param_id5:
   case k_osc_param_id6:
   case k_osc_param_shape:
+  {
+	  s_sine2.set_pwm(valf);
+	  break;
+  }
   case k_osc_param_shiftshape:
   default:
     break;

@@ -91,7 +91,6 @@ struct State {
 		float tmp_pwm = 0.5 + (pwm / 2.0f) + lfo_knob_scale * lfo;
 		tmp_pwm = clipminmaxf(PWM_MIN, tmp_pwm, PWM_MAX);
 
-		//float frames_during_ascent = (frames_per_cycle / 2.0) + (frames_per_cycle / 2.0 * tmp_pwm);
 		float frames_during_first_cycle = tmp_pwm * frames_per_double_cycle;
 		float val = 0.0f;
 		float ratio = 0.0f;
