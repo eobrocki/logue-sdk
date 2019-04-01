@@ -39,8 +39,8 @@
 
 #include "userosc.h"
 
-const float PWM_MIN = 0.05f;
-const float PWM_MAX = 0.95f;
+const float PWM_MIN = 0.00f;
+const float PWM_MAX = 1.0f; // 0.95f;
 
 const float TROUGH = -1.0f;
 const float PEAK = 1.0f;
@@ -95,10 +95,12 @@ struct State {
 		float val = 0.0f;
 		float ratio = 0.0f;
 		if (frame < frames_during_ascent) { // Rise
+			frames_during_ascent = clipminmaxf(1, frames_during_ascent, k_samplerate);
 			ratio = frame / frames_during_ascent;
 		}
 		else { // Fall
 			float frames_during_descent = frames_per_cycle - frames_during_ascent;
+			frames_during_descent = clipminmaxf(1, frames_during_descent, k_samplerate);
 			ratio = 1.0 - ((frame - frames_during_ascent) / frames_during_descent);
 		}
 		ratio = clipminmaxf(0.0f, ratio, 1.0f);
