@@ -1,0 +1,20 @@
+{
+  "header": {
+    "platform": "prologue",
+    "module": "osc",
+    "api": "1.0-0",
+    "dev_id": 0,
+    "prg_id": 0,
+    "version": "1.0-0",
+    "name": "supsaw",
+    "num_param": 6,
+    "params": [
+      [ "Super", 0, 100, "%" ],
+      [ "Saw", 0, 100, "%" ],
+      [ "by", 0, 100, "%" ],
+      [ "Damnatron", 0, 100, "%" ],
+      [ "!", 0, 100, "%" ],
+      [ "!", 0, 100, "%" ]
+    ]
+  }
+}
