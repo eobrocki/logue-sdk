@@ -1,13 +1,20 @@
 {
-    "header" : 
-    {
-        "platform" : "prologue",
-        "module" : "osc",
-        "api" : "1.0-0",
-        "dev_id" : 0,
-        "prg_id" : 0,
-        "version" : "0.1-0",
-        "name" : "sine2",
-        "num_param" : 0
-    }
+  "header": {
+    "platform": "prologue",
+    "module": "osc",
+    "api": "1.0-0",
+    "dev_id": 0,
+    "prg_id": 0,
+    "version": "0.1-0",
+    "name": "sine2",
+    "num_param": 6,
+    "params": [
+      [ "Sine", 0, 0, "" ],
+      [ "With", 0, 0, "" ],
+      [ "Lousy", 0, 0, "" ],
+      [ "Shape", 0, 0, "" ],
+      [ "by", 0, 0, "" ],
+      [ "Damnatron", 0, 0, "" ]
+    ]
+  }
 }

@@ -1,21 +1,19 @@
 {
-    "header" : 
-    {
-        "platform" : "prologue",
-        "module" : "osc",
-        "api" : "1.0-0",
-        "dev_id" : 0,
-        "prg_id" : 0,
-        "version" : "1.0-0",
-        "name" : "sqine",
-        "num_param" : 0,
-      "params": [
-        [ "N.A.", 0, 100, "" ],
-        [ "N.A.", 0, 100, "" ],
-        [ "N.A.", 0, 100, "" ],
-        [ "N.A.", 0, 100, "" ],
-        [ "N.A.", 0, 100, "" ],
-        [ "N.A.", 0, 100, "" ]
-      ]
-    }
+  "header": {
+    "platform": "prologue",
+    "module": "osc",
+    "api": "1.0-0",
+    "dev_id": 0,
+    "prg_id": 0,
+    "version": "1.0-0",
+    "name": "sqine",
+    "num_param": 5,
+    "params": [
+      [ "Square", 0, 0, "" ],
+      [ "x", 0, 0, "" ],
+      [ "Sine", 0, 0, "" ],
+      [ "by", 0, 0, "" ],
+      [ "Damnatron", 0, 0, "" ]
+    ]
+  }
 }

@@ -1,21 +1,20 @@
 {
-    "header" : 
-    {
-        "platform" : "prologue",
-        "module" : "osc",
-        "api" : "1.0-0",
-        "dev_id" : 0,
-        "prg_id" : 0,
-        "version" : "1.0-0",
-        "name" : "sq2",
-        "num_param" : 0,
-      "params": [
-        [ "N.A.", 0, 100, "" ],
-        [ "N.A.", 0, 100, "" ],
-        [ "N.A.", 0, 100, "" ],
-        [ "N.A.", 0, 100, "" ],
-        [ "N.A.", 0, 100, "" ],
-        [ "N.A.", 0, 100, "" ]
-      ]
-    }
+  "header": {
+    "platform": "prologue",
+    "module": "osc",
+    "api": "1.0-0",
+    "dev_id": 0,
+    "prg_id": 0,
+    "version": "1.0-0",
+    "name": "sq2",
+    "num_param": 6,
+    "params": [
+      [ "Yet", 0, 0, "" ],
+      [ "Another", 0, 0, "" ],
+      [ "PWM", 0, 0, "" ],
+      [ "Square", 0, 0, "" ],
+      [ "by", 0, 0, "" ],
+      [ "Damnatron", 0, 0, "" ]
+    ]
+  }
 }

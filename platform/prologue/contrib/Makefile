@@ -1,6 +1,9 @@
 all:
 	for osc in */Makefile ; do cd `dirname $$osc` && make && cd .. ; done
 
+clean:
+	for osc in */Makefile ; do cd `dirname $$osc` && make clean && cd .. ; done
+
 clear:
 	for osc in */Makefile ; do cd `dirname $$osc` && make clear && cd .. ; done
 

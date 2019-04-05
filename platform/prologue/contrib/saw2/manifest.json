@@ -1,21 +1,19 @@
 {
-    "header" : 
-    {
-        "platform" : "prologue",
-        "module" : "osc",
-        "api" : "1.0-0",
-        "dev_id" : 0,
-        "prg_id" : 0,
-        "version" : "1.0-0",
-        "name" : "saw2",
-        "num_param" : 0,
-      "params": [
-        [ "N.A.", 0, 100, "" ],
-        [ "N.A.", 0, 100, "" ],
-        [ "N.A.", 0, 100, "" ],
-        [ "N.A.", 0, 100, "" ],
-        [ "N.A.", 0, 100, "" ],
-        [ "N.A.", 0, 100, "" ]
-      ]
-    }
+  "header": {
+    "platform": "prologue",
+    "module": "osc",
+    "api": "1.0-0",
+    "dev_id": 0,
+    "prg_id": 0,
+    "version": "1.0-0",
+    "name": "saw2",
+    "num_param": 5,
+    "params": [
+      [ "Sawtooth", 0, 0, "" ],
+      [ "With", 0, 0, "" ],
+      [ "Shape", 0, 0, "" ],
+      [ "by", 0, 0, "" ],
+      [ "Damnatron", 0, 0, "" ]
+    ]
+  }
 }
