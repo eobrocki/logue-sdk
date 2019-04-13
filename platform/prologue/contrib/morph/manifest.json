@@ -1,0 +1,17 @@
+{
+  "header": {
+    "platform": "prologue",
+    "module": "osc",
+    "api": "1.0-0",
+    "dev_id": 0,
+    "prg_id": 0,
+    "version": "1.0-0",
+    "name": "morph",
+    "num_param": 3,
+    "params": [
+      [ "Morph", 0, 0, "" ],
+      [ "by", 0, 0, "" ],
+      [ "Damnatron", 0, 0, "" ]
+    ]
+  }
+}
