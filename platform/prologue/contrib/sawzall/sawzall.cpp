@@ -99,7 +99,6 @@ struct Saw {
 		frame++;
 
 		return y;
-		//return float(frame % 1000) / 1000.0; // For testing...
 	}
 };
 
