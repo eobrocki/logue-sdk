@@ -1,0 +1,19 @@
+{
+  "header": {
+    "platform": "prologue",
+    "module": "osc",
+    "api": "1.0-0",
+    "dev_id": 0,
+    "prg_id": 0,
+    "version": "1.0-0",
+    "name": "fnord",
+    "num_param": 5,
+    "params": [
+      [ "bank", 0, 99, "" ],
+      [ "patch", 0, 99, "" ],
+      [ "Fnord", 0, 0, "" ],
+      [ "by", 0, 0, "" ],
+      [ "Damnatron", 0, 0, "" ]
+    ]
+  }
+}
