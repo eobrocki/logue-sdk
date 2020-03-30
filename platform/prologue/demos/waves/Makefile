@@ -28,7 +28,9 @@ ZIP_ARGS = -r -m -q
 
 ifeq ($(OS),Windows_NT)
 ifneq ($(MSYSTEM), MSYS)
+ifneq ($(MSYSTEM), MINGW64)
   ZIP = $(TOOLSDIR)/zip/bin/zip
+endif
 endif
 endif
 
@@ -213,7 +215,7 @@ $(BUILDDIR)/%.elf: $(OBJS) $(LDSCRIPT)
 
 %.list: %.elf
 	@echo Creating $@
-	@$(OD) -S $< > $@
+	@$(OD) -Ss $< > $@
 
 clean:
 	@echo Cleaning

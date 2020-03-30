@@ -34,7 +34,10 @@
  * @file    osc_api.h
  * @brief   Oscillator runtime API.
  *
- * @addtogroup api
+ * @addtogroup osc Oscillator
+ * @{
+ *
+ * @addtogroup osc_api Runtime API
  * @{
  */
 
@@ -52,8 +55,18 @@ extern "C" {
 #define __fast_inline static inline __attribute__((always_inline, optimize("Ofast")))  
   
   /*===========================================================================*/
-  /* General                                                                   */
+  /* Runtime Environment                                                       */
   /*===========================================================================*/
+
+  /**
+   * @name   Runtime Environment
+   * @{ 
+   */
+
+  /**
+   * Current platform
+   */
+  extern const uint32_t k_osc_api_platform;
   
   /**
    * Current API version
@@ -73,6 +86,8 @@ extern "C" {
 
 #define k_samplerate        (48000)
 #define k_samplerate_recipf (2.08333333333333e-005f)
+
+  /** @} */
   
   /*===========================================================================*/
   /* Lookup tables                                                             */
@@ -777,4 +792,4 @@ extern "C" {
 
 #endif // __osc_api_h
 
-/** @} */
+/** @} @} */

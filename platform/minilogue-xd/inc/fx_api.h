@@ -35,7 +35,10 @@
  * @file    fx_api.h
  * @brief   Effects runtime API.
  *
- * @addtogroup api
+ * @addtogroup fx Effects
+ * @{
+ * 
+ * @addtogroup fx_api Runtime API
  * @{
  */
 
@@ -53,8 +56,18 @@ extern "C" {
 #define __fast_inline static inline __attribute__((always_inline, optimize("Ofast")))  
   
   /*===========================================================================*/
-  /* General API                                                               */
+  /* Runtime Environment                                                       */
   /*===========================================================================*/
+
+  /**
+   * @name   Runtime Environment
+   * @{ 
+   */
+  
+  /**
+   * Current platform
+   */
+  extern const uint32_t k_fx_api_platform;
   
   /**
    * Current API version
@@ -72,11 +85,33 @@ extern "C" {
     return _fx_mcu_hash();
   }
 
+  /**
+   * Get current tempo as beats per minute as integer
+   *
+   * @return  Current integer BPM, multiplied by 10 to allow 1 decimal precision 
+   */
+  uint16_t _fx_get_bpm(void);
+
+  __fast_inline uint16_t fx_get_bpm(void) {
+    return _fx_get_bpm();
+  }
+
+  /**
+   * Get current tempo as beats per minute as floating point
+   *
+   * @return  Current floating point BPM
+   */
+  float _fx_get_bpmf(void);
+
+  __fast_inline float fx_get_bpmf(void) {
+    return _fx_get_bpmf();
+  }
+
+  /** @} */
+  
   /*===========================================================================*/
   /* Lookup tables                                                             */
   /*===========================================================================*/
-  
-  /** @} */
   
   /**
    * @name   Sine half-wave
@@ -146,8 +181,6 @@ extern "C" {
     return fx_sinuf(x+((k_wt_sine_size>>2)<<k_wt_sine_u32shift));
   }
   
-  /** @} */
-    
   /** @} */
     
   /*===========================================================================*/
@@ -384,8 +417,6 @@ extern "C" {
   }
   
   /** @} */
-
-  /** @} */
   
 #ifdef __cplusplus
 }
@@ -394,4 +425,4 @@ extern "C" {
 
 #endif // __fx_api_h
 
-/** @} */
+/** @} @} */

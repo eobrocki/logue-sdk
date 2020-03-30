@@ -35,11 +35,11 @@ SCRIPT_DIR="$(pwd)/$(dirname $0)"
 pushd ${SCRIPT_DIR} 2>&1 > /dev/null
 
 PKGNAME="logue-cli"
-VERSION="0.03-0b"
+VERSION="0.07-2b"
 
-ARCHIVE_URL="http://cdn.storage.korg.com/korg_SDK/logue-cli-win32-0.03-0b.zip"
-ARCHIVE_SHA1="cfe6e6e774ab03ffc76e99dcff675feb1ca9db29"
-ARCHIVE_NAME="logue-cli-win32-0.03-0b.zip"
+ARCHIVE_URL="http://cdn.storage.korg.com/korg_SDK/logue-cli-win32-0.07-2b.zip"
+ARCHIVE_SHA1="a5bb27d2493728900569881c2a9fe366cce1e943"
+ARCHIVE_NAME="logue-cli-win32-0.07-2b.zip"
 
 if [[ "${OSTYPE}" == "msys" ]]; then
     echo ">> Assuming msys platform."
