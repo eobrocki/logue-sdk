@@ -56,3 +56,5 @@ tools/emscripten/emsdk
 *.su
 
 /.vs
+
+tools/logue-cli/logue-cli
