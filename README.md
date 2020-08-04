@@ -7,12 +7,12 @@ This is a two Operator FM Synthesizer utilizing the Envelope, Detune, and Feedba
   - **Shape** : Modify the Modulator Operator's Output Level (Increases the amount of FM in Serial Mode)
   - **Alt**   : Detunes the Carrier Operator by a small amount
   
-  - **Param1**: Carrier Operator Coarse Tune   (in increments of 1/2 Octaves to allow for inharmonic tones)
-  - **Param2**: Modulator Operator Coarse Tune (in increments of 1/2 Octaves to allow for inharmonic tones)
-  - **Param3**: Feedback Amount     (only applies to Serial Mode)
-  - **Param4**: Operators Waveshape (Choose between Sine, Saw, Square, and Parabolic wave shapes for each operator)
-  - **Param5**: The Multi-parameter knob (Sets the parameter based on what the Multi Function knob is set to)
-  - **Param6**: The Multi-Function knob  (Choose from an additional 6 parameters, and modify with the Multi-parameter knob)
+  - **Param1**: Carrier Operator Coarse Tune   (*in increments of 1/2 Octaves to allow for inharmonic tones*)
+  - **Param2**: Modulator Operator Coarse Tune (*in increments of 1/2 Octaves to allow for inharmonic tones*)
+  - **Param3**: Feedback Amount     (*only applies to Serial Mode*)
+  - **Param4**: Operators Waveshape (*Choose between Sine, Saw, Square, and Parabolic wave shapes for each operator*)
+  - **Param5**: The Multi-parameter knob (*Sets the parameter based on what the Multi Function knob is set to*)
+  - **Param6**: The Multi-Function knob  (*Choose from an additional 6 parameters, and modify with the Multi-parameter knob*)
 
 ## Envelope ##
 The Oscillator utilizes the Envelope code from the DEXED project. This applies only to the Modulator Operator. The Carrier operator is intended to use the bulit in Envelope on the Nutekt NTS-1.<br/>
