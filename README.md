@@ -1,35 +1,31 @@
-# logue-sdk 
+# SineWaves Oscillator Plugin
+This is a two Operator FM Synthesizer utilizing the Envelope, Detune, and Feedback code found in the DEXED vst by Suburban Digital (https://github.com/asb2m10/dexed).
 
-[日本語](./README_ja.md)
-
-This repository contains all the files and tools needed to build custom oscillators and effects for the [prologue](https://www.korg.com/products/synthesizers/prologue), [minilogue xd](https://www.korg.com/products/synthesizers/minilogue_xd) and [Nu:Tekt NTS-1 digital kit](https://www.korg.com/products/dj/nts_1) synthesizers.
-
-#### Ready to Use Content
-
-To download ready to use oscillators and effects, refer to the [Unit Index](https://korginc.github.io/logue-sdk/unit-index/) and follow instructions on the developer's website.
-
-#### Compatibility Notes
-
-In order to run user units built with SDK version 1.1-0, the following firmware versions are required:
-* prologue: >= v2.00
-* minilogue xd: >= v2.00
-* Nu:Tekt NTS-1 digital: >= v1.02
-
-#### Overall Structure:
-* [platform/prologue/](platform/prologue/) : prologue specific files, templates and demo projects.
-* [platform/minilogue-xd/](platform/minilogue-xd/) : minilogue xd specific files, templates and demo projects.
-* [platform/nutekt-digital/](platform/nutekt-digital/) : Nu:Tekt NTS-1 digital kit specific files, templates and demo projects.
-* [platform/ext/](platform/ext/) : External dependencies and submodules.
-* [tools/](tools/) : Installation location and documentation for tools required to build projects and manipulate built products.
-* [devboards/](devboards/) : Information and files related to limited edition development boards.
-
-## Sharing your Oscillators/Effects with us
-
-To show us your work please reach out to *logue-sdk@korg.co.jp*.
-
-## Support
-
-The SDK is provided as-is, no technical support will be provided by KORG.
+# Features
+The parameters of the Oscillator are as follows
+  Shape : Modify the Modulator Operator's Output Level (Increases the amount of FM in Serial Mode)
+  Alt   : Detunes the Carrier Operator by a small amount
+  
+  Param1: Carrier Operator Coarse Tune   (in increments of 1/2 Octaves to allow for inharmonic tones)
+  Param2: Modulator Operator Coarse Tune (in increments of 1/2 Octaves to allow for inharmonic tones)
+  Param3: Feedback Amount     (only applies to Serial Mode)
+  Param4: Operators Waveshape (Choose between Sine, Saw, Square, and Parabolic wave shapes for each operator)
+  Param5: The Multi-parameter knob (Sets the parameter based on what the Multi Function knob is set to)
+  Param6: The Multi-Function knob  (Choose from an additional 6 parameters, and modify with the Multi-parameter knob)
+  
+The Oscillator utilizes the Envelope code from the DEXED project. This applies only to the Modulator Operator. The Carrier operator is intended to use the bulit in Envelope on the Nutekt NTS-1. 
+  Set the Envelope levels with the Multi-Function and Multi-Parameter Knobs
+    Multi-Function : 1 - Envelope Attack Rate
+                     2 - Envelope Decay Rate
+                     3 - Envelope Attack Level
+                     4 - Envelope Decay Level
+                     5 - Envelope Release Rate
+                     6 - Operators Routing
+This way of adding parameters is a bit cumbersome, so I've decided 10 parameters total would be adequate for any Oscilators. 
+  
+Ability to route the Operators in Serial and Parallel modes, accessible as Param6 in the Multi-Function knob.
+  Serial mode   - Routes the output of the Modulator Operator to the input of the Carrier operator. This mode allows for FM synthesis.
+  Parallel mode - The outputs of each Operator are sent directly to the Main Audio Output. There is no FM possible with this routing.
 
 <!-- ## Troubleshooting -->
 
