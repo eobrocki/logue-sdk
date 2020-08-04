@@ -1,0 +1,21 @@
+{
+    "header" : 
+    {
+        "platform" : "nutekt-digital",
+        "module" : "osc",
+        "api" : "1.1-0",
+        "dev_id" : 0,
+        "prg_id" : 0,
+        "version" : "1.0-1",
+        "name" : "sine waves",
+        "num_param" : 6,
+        "params" : [
+	        ["CAR COAR",   0, 15, ""],
+	        ["MOD COAR",   0, 15, ""],
+   	        ["Feedback",    0, 7, ""],
+            ["Wave Shape",   0, 15, ""],
+            ["Param Mult", 0, 99, ""],
+            ["Funct Mult", 0, 5, ""]
+        ]
+    }
+}
